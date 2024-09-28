@@ -1,23 +1,23 @@
-import { useEffect, useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
-import axios from 'axios'
+import { useEffect, useState } from "react";
+import reactLogo from "./assets/react.svg";
+import viteLogo from "/vite.svg";
+import "./App.css";
+import axios from "axios";
 
 function App() {
   const [count, setCount] = useState(0);
-  const [cars, setCars] = useState([])
+  const [cars, setCars] = useState([]);
 
   const fetchApi = async () => {
-    const response = await axios.get('http://localhost:8080/api')
+    const response = await axios.get("http://localhost:8080/api");
 
-    setCars(response.data.cars)
-  }
+    setCars(response.data.cars);
+  };
 
   // response to changes on the system
   useEffect(() => {
-    fetchApi()
-  }, [])
+    fetchApi();
+  }, []);
 
   return (
     <>
@@ -41,14 +41,13 @@ function App() {
           <ul key={index}>
             <li>{car}</li>
           </ul>
-        ))
-        }
+        ))}
       </div>
       <p className="read-the-docs">
         Click on the Vite and React logos to learn more
       </p>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
