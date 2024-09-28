@@ -1,17 +1,15 @@
 import { useEffect, useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
 import "./App.css";
 import axios from "axios";
 
 function App() {
-  const [count, setCount] = useState(0);
-  const [cars, setCars] = useState([]);
+  const [superheroes, setSuperheroes] = useState([]);
 
   const fetchApi = async () => {
     const response = await axios.get("http://localhost:8080/api");
 
-    setCars(response.data.cars);
+    console.log(response.data)
+    setSuperheroes(response.data.superheroes);
   };
 
   // response to changes on the system
@@ -21,31 +19,22 @@ function App() {
 
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
+      <h1>Superheroes</h1>
       <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-        {cars.map((car, index) => (
+        {superheroes.map((superheroe, index) => (
           <ul key={index}>
-            <li>{car}</li>
+            <li>
+              <h2>{superheroe.superhero}</h2>
+              <div className="info">
+                <p>Publisher: {superheroe.publisher}</p>
+                <p>Alter ego: {superheroe.alter_ego}</p>
+                <p>First appearance: {superheroe.first_appearance}</p>
+                <p>Characters: {superheroe.characters}</p>
+              </div>
+            </li>
           </ul>
         ))}
       </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
     </>
   );
 }
